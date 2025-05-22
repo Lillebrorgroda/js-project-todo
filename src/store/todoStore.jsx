@@ -25,6 +25,9 @@ const useTodoStore = create(persist((set) => ({
   markAllComplete: () => set((state) => ({
     todos: state.todos.map((todo) => ({ ...todo, completed: true })),
   })),
+  clearTodos: () => set(() => ({
+    todos: [],
+  })),
 
 }),
 
