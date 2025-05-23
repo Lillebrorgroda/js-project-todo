@@ -18,11 +18,12 @@ const TodoListContainer = styled.div`
   background-color: #93e1d8;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+ 
 
   
 
   @media (min-width: 768px) {
-    width: 100%;
+    
     padding: 10px;
     h1 {
       font-size: 22px;
@@ -51,17 +52,18 @@ const StyledFilterButtons = styled.div`
   margin-bottom: 10px;
   `
 const FilterButton = styled.button`
-    background-color: ${({ active }) => (active ? "#ff5546;" : "#FFB9B3")};
+    background-color: ${({ $active }) => ($active ? "#ff5546;" : "#ffa69e")};
     color: #242424;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 10px;
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.3s ease;
-   
+    font-size: 16px;
+     
 
      &:hover {
-      background-color: ${({ active }) => (active ? "#ffa69e" : "#FFB9B3")};
+      background-color: ${({ $active }) => ($active ? "#ffa69e" : "#ff5546")};
      } 
   `
 
@@ -89,7 +91,7 @@ button {
   justify-content: center;
 
   &:hover {
-    background-color: #ff8c8c;
+    background-color: #ff5546;
   }
 }
 `
@@ -104,7 +106,7 @@ max-width: 600px;
 const TodoItem = styled.li`
 display: flex;
 align-items: center;
-justify-content: space - between;
+justify-content: space-between;
 background-color: #fff;
 padding: 12px 16px;
 border-radius: 8px;
@@ -114,11 +116,11 @@ box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   span {
   flex: 1;
   margin-left: 10px;
-  color: ${({ completed }) => (completed ? "#999" : "#333")};
+  color: ${({ $completed }) => ($completed ? "#999" : "#242424")};
   font-size: 16px;
-  text-decoration: ${({ completed }) => (completed ? "line-through" : "none")};
+  text-decoration: ${({ $completed }) => ($completed ? "line-through" : "none")};
   transition: color 0.3s ease, text - decoration 0.3s ease;
-  font-style: ${({ completed }) => (completed ? "italic" : "normal")};
+  font-style: ${({ $completed }) => ($completed ? "italic" : "normal")};
 }
 
 input[type = "checkbox"] {
@@ -128,12 +130,12 @@ input[type = "checkbox"] {
   button {
   background: none;
   border: none;
-  color: #333;
+  color: #242424;
   cursor: pointer;
   font-size: 18px;
 
     &:hover {
-    color: #ffa69e;
+    color: #ff5546;
     background: none;
   }
 }
@@ -144,7 +146,7 @@ const EmptyState = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 40px;
-  color: #666;
+  color: #302f2f;
   font-size: 18px;
   animation: fadeIn 1s ease;
 
@@ -205,15 +207,15 @@ const TodoList = () => {
       <StyledFilterButtons>
         <FilterButton
           aria-label="show all todos"
-          active={filter === "all"}
+          $active={filter === "all"}
           onClick={() => setFilter("all")}>All</FilterButton>
         <FilterButton
           aria-label="show completed todos"
-          active={filter === "completed"}
+          $active={filter === "completed"}
           onClick={() => setFilter("completed")}>Completed</FilterButton>
         <FilterButton
           aria-label="show incomplete todos"
-          active={filter === "incomplete"}
+          $active={filter === "incomplete"}
           onClick={() => setFilter("incomplete")}>Incomplete</FilterButton>
       </StyledFilterButtons>
       <TodoListStyled>
@@ -222,8 +224,8 @@ const TodoList = () => {
           if (filter === "incomplete") return !todo.completed
           return true
         }).length === 0 && (
-            <EmptyState>
-              <FontAwesomeIcon icon={faClipboardList} />
+            <EmptyState role="presentation">
+              <FontAwesomeIcon role="presentation" icon={faClipboardList} />
               <p>Your todo list is empty – time to add something!</p>
             </EmptyState>
           )}
@@ -234,7 +236,7 @@ const TodoList = () => {
         })
 
           .map((todo) => (
-            <TodoItem key={todo.id} completed={todo.completed}>
+            <TodoItem key={todo.id} $completed={todo.completed}>
               <input
                 type="checkbox"
                 checked={todo.completed}

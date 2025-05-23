@@ -6,14 +6,16 @@ const GlobalStyle = createGlobalStyle`
 
   * {
     box-sizing: border-box;
-    /* margin: 0;
-    padding: 0; */
+
   }
 
   body {
     font-family: "Poppins", sans-serif;
     background-color: #ddfff7;
     color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
     /* line-height: 1.6; */
   }
 
@@ -25,9 +27,10 @@ const GlobalStyle = createGlobalStyle`
     background-color: #ffa69e;
     color: #242424;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 10px;
     cursor: pointer;
     border-radius: 5px;
+    font-size: 16px;
 
     &:hover {
       background-color: #ff5546;
