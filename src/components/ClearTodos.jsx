@@ -4,9 +4,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons"
 
 const ClearContainer = styled.div`
-  position: fixed;
+
   bottom: 20px;
   left: 20px;
+
+  @media (min-width: 601px) {
+    position: fixed;
+    z-index: 1000;
+  }
   `
 
 const ClearTodos = () => {

@@ -27,18 +27,16 @@ const CountText = styled.p`
   font-size: 16px;
   color: #444;
   font-weight: 500;
-
-
 `
 
 const TodoListCount = () => {
   const todos = useTodoStore((state) => state.todos)
-
   const todoCount = todos.length
   const completedCount = todos.filter((todo) => todo.completed).length
   const incompleteCount = todoCount - completedCount
 
   return (
+
     <CountContainer>
       <Heading>Stats</Heading>
       <CountText>Total: {todoCount}</CountText>
