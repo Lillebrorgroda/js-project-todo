@@ -63,6 +63,7 @@ export const StyledInput = styled.div`
 
   input[type="text"] {
     flex: 1;
+    
   }
 
   button {
@@ -108,6 +109,7 @@ export const TodoItem = styled.li`
     text-decoration: ${({ $completed }) => ($completed ? "line-through" : "none")};
     transition: color 0.3s ease, text-decoration 0.3s ease;
     font-style: ${({ $completed }) => ($completed ? "italic" : "normal")};
+    word-break: break-all;
   }
 
   input[type="checkbox"] {
